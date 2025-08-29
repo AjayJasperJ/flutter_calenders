@@ -169,7 +169,7 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
       children: [
         Container(
           width: widget.width ?? double.infinity,
-          color: widget.backgroundColor ?? widget.primaryColor.withOpacity(0.05),
+          color: widget.backgroundColor ?? widget.primaryColor.withValues(alpha: 0.05),
           margin: widget.margin,
           padding: widget.padding ?? EdgeInsets.all(10),
           constraints: BoxConstraints(maxHeight: 350),

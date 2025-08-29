@@ -182,7 +182,7 @@ class ScheduleBasedCalenderState extends State<ScheduleBasedCalender> {
                       } else {
                         cellColor =
                             widget.monthDateColor ??
-                            Theme.of(context).primaryColor.withOpacity(0.1);
+                            Theme.of(context).primaryColor.withValues(alpha: .1);
                       }
                       Color? textColor;
                       if (!isCurrentMonth) {
