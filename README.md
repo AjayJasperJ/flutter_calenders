@@ -1,39 +1,161 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 📅 Flutter Custom Calendar
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A fully customizable **calendar package** for Flutter that supports **all platforms (iOS, Android, Web, Desktop)**.
+Easily integrate beautiful and interactive calendars into your apps with flexible **design customization, event management, and multi-platform compatibility**.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+---
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## ✨ Features
 
-## Features
+- 📆 **Customizable UI** – Colors, fonts, shapes, and layouts.
+- 🎨 **Theming Support** – Custom mode ready.
+- 🗓 **Multiple Views** – Month, Week, Day.
+- 🔄 **Multi-Platform Support** – Android, iOS, Web, Windows, macOS, Linux.
+- ⚡ **Performance Optimized** – Smooth scrolling & rendering.
+- 🛠 **Developer Friendly** – Simple APIs and clean architecture.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+---
 
-## Getting started
+## 🚀 Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the dependency in your `pubspec.yaml`:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  flutter_calenders: ^0.0.2
 ```
 
-## Additional information
+Run:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```sh
+flutter pub get
+```
+
+---
+
+## 📖 Usage
+
+### 1️⃣ Event Based Calendar
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_calenders/flutter_calenders.dart';
+
+class MyCalendarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: EventBasedCalender(
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.all(10),
+          events: [
+            Event(
+              eventName: 'Sick leave',
+              dates: [DateTime(2025, 8, 21), DateTime(2025, 8, 22)],
+              color: Colors.green,
+            ),
+            Event(
+              eventName: 'Paid leave',
+              dates: [DateTime(2025, 8, 17), DateTime(2025, 8, 18)],
+              color: Colors.orange,
+            ),
+          ],
+          primaryColor: Colors.blue,
+          backgroundColor: Colors.blue.withValues(alpha: .05),
+          chooserColor: Colors.black,
+          endYear: 2028,
+          startYear: 2020,
+          currentMonthDateColor: Colors.black,
+          pastFutureMonthDateColor: Colors.grey,
+          isSelectedColor: Colors.amber,
+          isSelectedShow: true,
+          showEvent: true,
+          onDateTap: (date) {
+            print(date);
+          },
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+### 2️⃣ Schedule Based Calendar
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_calenders/flutter_calenders.dart';
+
+class MySchedulePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: ScheduleBasedCalender(
+          events: [
+            Event(
+              eventName: 'Sick leave',
+              dates: [DateTime(2025, 8, 21), DateTime(2025, 8, 22)],
+              color: Colors.green,
+            ),
+            Event(
+              eventName: 'Paid leave',
+              dates: [DateTime(2025, 8, 17), DateTime(2025, 8, 18)],
+              color: Colors.orange,
+            ),
+          ],
+          currentMonth: 8,
+          currentYear: 2025,
+          backgroundColor: Colors.white.withValues(alpha: .1),
+          monthDateColor: Colors.white.withValues(alpha: .1),
+          weekdayColor: Colors.white.withValues(alpha: .1),
+          monthTextColor: Colors.white,
+          weekdayTextColor: Colors.white,
+          isSelectedShow: true,
+          isSelectedColor: Colors.deepOrange,
+          onDateTap: (date) {
+            print(date);
+          },
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+## 🎨 Customization Options
+
+You can customize:
+- **Colors** (primary, background, chooser, event markers, selected date, etc.)
+- **Fonts & Styling**
+- **Date Ranges** (startYear, endYear)
+- **Event Display** (enable/disable, custom colors)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+1. Fork the repo
+2. Create a new branch (`feature/my-feature`)
+3. Commit your changes
+4. Open a Pull Request 🚀
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 💙 Support
+
+If you like this package, please ⭐ the repo on GitHub and share it with others.
+Issues and feature requests are welcome in the [GitHub Issues](../../issues) section.
