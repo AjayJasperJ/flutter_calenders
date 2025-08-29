@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Minor examples images added
+
 ## 0.0.3
 
 * Minor Pubdev tweeks

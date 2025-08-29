@@ -129,6 +129,15 @@ class MySchedulePage extends StatelessWidget {
 
 ---
 
+## 📸 Screenshots
+
+### Event Based Calendar
+<img src="assets/event_calendar.png" alt="Event Calendar" width="300">
+
+### Schedule Based Calendar
+<img src="assets/schedule_calendar.png" alt="Schedule Calendar" width="300">
+
+
 ## 🎨 Customization Options
 
 You can customize:

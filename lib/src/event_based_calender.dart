@@ -241,8 +241,9 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                     return Row(
                                       children: List.generate(4, (colIndex) {
                                         int yearIndex = rowIndex * 4 + colIndex;
-                                        if (yearIndex >= years.length)
+                                        if (yearIndex >= years.length) {
                                           return Expanded(child: SizedBox());
+                                        }
                                         final year = years[yearIndex];
                                         final isSelected = year == focusedDay.year;
                                         return Expanded(
@@ -345,8 +346,9 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                     return Row(
                                       children: List.generate(7, (colIndex) {
                                         int dayIndex = rowIndex * 7 + colIndex;
-                                        if (dayIndex >= days.length)
+                                        if (dayIndex >= days.length) {
                                           return Expanded(child: SizedBox());
+                                        }
                                         final day = days[dayIndex];
                                         final isCurrentMonth = day.month == focusedDay.month;
                                         final event = getEvent(day);
@@ -473,8 +475,9 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: List.generate(2, (colIndex) {
                               int eventIndex = rowIndex * 2 + colIndex;
-                              if (eventIndex >= widget.events.length)
+                              if (eventIndex >= widget.events.length) {
                                 return Expanded(child: SizedBox());
+                              }
                               final event = widget.events[eventIndex];
                               return Expanded(
                                 child: Row(
