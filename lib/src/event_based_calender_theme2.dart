@@ -378,7 +378,7 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                         }
                                         final day = days[dayIndex];
                                         final isCurrentMonth = day.month == focusedDay.month;
-                                        final event = getEvent(day);
+                                        // final event = getEvent(day);
                                         final coloredEvent = getColoredEvent(day);
                                         final dotEvent = getEvent(day);
                                         final isWeekend =
