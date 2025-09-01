@@ -34,18 +34,21 @@ class CalnderWidgets {
     double? textSpacing,
     double? textHeight,
     String? fontFamily,
+    TextStyle? directStyle,
   }) {
     return Text(
       content,
-      style: TextStyle(
-        fontFamily: fontFamily,
-        fontSize: textSize,
-        height: textHeight,
-        decoration: textDecoration?.value,
-        color: textColor,
-        fontWeight: textStype?.weight,
-        wordSpacing: textSpacing,
-      ),
+      style:
+          directStyle ??
+          TextStyle(
+            fontFamily: fontFamily,
+            fontSize: textSize,
+            height: textHeight,
+            decoration: textDecoration?.value,
+            color: textColor,
+            fontWeight: textStype?.weight,
+            wordSpacing: textSpacing,
+          ),
       maxLines: maxLines,
       overflow: textBehaviour,
       textAlign: textAlign,
