@@ -198,7 +198,7 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
       children: [
         Container(
           width: widget.width,
-          color: widget.backgroundColor ?? widget.primaryColor.withOpacity(0.05),
+          color: widget.backgroundColor ?? widget.primaryColor.withValues(alpha: .05),
           margin: widget.margin,
           padding: widget.padding ?? EdgeInsets.all(10),
           constraints: BoxConstraints(maxHeight: 500),
