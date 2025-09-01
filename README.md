@@ -202,13 +202,13 @@ class MyEventPage extends StatelessWidget {
 ## 📸 Screenshots
 
 ### Event Based Calendar
-<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/assets/event_calender.png" alt="Event Calendar" width="300">
+<img src="https://raw.githubusercontent.com/AjayJasperJ/flutter_calenders/main/assets/event_calender.png" alt="Event Calendar" width="300">
 
 ### Schedule Based Calendar
-<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/assets/schedule_calender.png" alt="Schedule Calendar" width="300">
+<img src="https://raw.githubusercontent.com/AjayJasperJ/flutter_calenders/main/assets/schedule_calender.png" alt="Schedule Calendar" width="300">
 
 ### Event Based Calendar Thme 2
-<img src="https://raw.githubusercontent.com/USERNAME/REPO/main/assets/event_calender2.png" alt="Event Calendar 2" width="300">
+<img src="https://raw.githubusercontent.com/AjayJasperJ/flutter_calenders/main/assets/event_calender2.png" alt="Event Calendar 2" width="300">
 
 ## 🎨 Customization Options
 
