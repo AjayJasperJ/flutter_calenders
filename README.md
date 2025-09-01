@@ -127,16 +127,88 @@ class MySchedulePage extends StatelessWidget {
 }
 ```
 
+### 2️⃣ Event Based Calendar Theme 2
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_calenders/flutter_calenders.dart';
+
+class MyEventPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: EventCalendarTheme2(
+              markAllDates: true,
+              coloredEvents: [
+                Event(
+                  eventName: 'Absent',
+                  dates: [7, 14, 21, 28, 20].map((e) => DateTime(2025, 9, e)).toList(),
+                  color: Colors.red,
+                ),
+              ],
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.all(10),
+              events: [
+                Event(
+                  eventName: 'Present',
+                  dates: [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    22,
+                    23,
+                    24,
+                  ].map((element) => DateTime(2025, 9, element)).toList(),
+                  color: Colors.green,
+                ),
+              ],
+              primaryColor: Colors.blueGrey,
+              backgroundColor: Colors.white,
+              chooserColor: Colors.black,
+              todayColor: Colors.blue.withValues(alpha: .5),
+              endYear: 2028,
+              startYear: 2020,
+              currentMonthDateColor: Colors.black,
+              pastFutureMonthDateColor: Colors.grey,
+              isSelectedColor: Colors.amber,
+              isSelectedShow: true,
+              showEvent: true,
+              onDateTap: (date) {
+                print(date);
+              },
+            ),
+      ),
+    );
+  }
+}
+```
+
 ---
 
 ## 📸 Screenshots
 
 ### Event Based Calendar
-<img src="assets/event_calendar.png" alt="Event Calendar" width="300">
+<img src="assets/event_calender.png" alt="Event Calendar" width="300">
 
 ### Schedule Based Calendar
-<img src="assets/schedule_calendar.png" alt="Schedule Calendar" width="300">
+<img src="assets/schedule_calender.png" alt="Schedule Calendar" width="300">
 
+### Event Based Calendar Thme 2
+<img src="assets/event_calender2.png" alt="Event Calendar 2" width="300">
 
 ## 🎨 Customization Options
 

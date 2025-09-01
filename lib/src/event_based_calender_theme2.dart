@@ -28,6 +28,7 @@ class EventCalendarTheme2 extends StatefulWidget {
   final Color? currentMonthDateColor;
   final Color? pastFutureMonthDateColor;
   final Color? chooserColor;
+  final Color? todayColor;
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
   final void Function(DateTime date)? onDateTap;
@@ -38,14 +39,13 @@ class EventCalendarTheme2 extends StatefulWidget {
   final bool markAllDates;
   final double? legendTextSize;
   final FontWeight? legendTextWeight;
-  final double? legendDotSize;
   final TextStyle? legendTextStyle;
   final TextStyle? calendarTextStyle;
-  final double? calendarDotSize;
 
   const EventCalendarTheme2({
     super.key,
     this.width,
+    this.todayColor,
     this.fontsize,
     required this.coloredEvents,
     required this.events,
@@ -65,10 +65,8 @@ class EventCalendarTheme2 extends StatefulWidget {
     this.markAllDates = false,
     this.legendTextSize,
     this.legendTextWeight,
-    this.legendDotSize,
     this.legendTextStyle,
     this.calendarTextStyle,
-    this.calendarDotSize,
   });
 
   @override
@@ -219,8 +217,29 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                               horizontal: widget.width != null ? (widget.width! * .02) : 10,
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                GestureDetector(
+                                  onTap: _goToPreviousMonth,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withValues(alpha: .4),
+                                          blurRadius: 5,
+                                        ),
+                                      ],
+                                    ),
+                                    child: Icon(
+                                      Icons.chevron_left,
+                                      color: widget.chooserColor,
+                                      size: dispSize.height * .03,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: widget.width ?? dispSize.width * .04),
                                 Row(
                                   children: [
                                     GestureDetector(
@@ -232,7 +251,7 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                         textColor: widget.chooserColor,
                                       ),
                                     ),
-                                    SizedBox(width: dispSize.width * .02),
+                                    SizedBox(width: dispSize.width * .01),
                                     GestureDetector(
                                       onTap: _showYearChooser,
                                       child: CalnderWidgets.calnderText(
@@ -244,22 +263,31 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                     ),
                                   ],
                                 ),
-                                Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: _goToPreviousMonth,
-                                      child: Icon(Icons.chevron_left, color: widget.chooserColor),
+                                SizedBox(width: widget.width ?? dispSize.width * .04),
+                                GestureDetector(
+                                  onTap: _goToNextMonth,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withValues(alpha: .4),
+                                          blurRadius: 5,
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(width: dispSize.width * .04),
-                                    GestureDetector(
-                                      onTap: _goToNextMonth,
-                                      child: Icon(Icons.chevron_right, color: widget.chooserColor),
+                                    child: Icon(
+                                      Icons.chevron_right,
+                                      color: widget.chooserColor,
+                                      size: dispSize.height * .03,
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
+                          SizedBox(height: dispSize.height * .02),
                           if (yearChooser != null)
                             Expanded(
                               child: SingleChildScrollView(
@@ -429,7 +457,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                           )
                                                         : isToday
                                                         ? BoxDecoration(
-                                                            color: Colors.blue,
+                                                            color:
+                                                                widget.todayColor ??
+                                                                widget.primaryColor,
                                                             borderRadius: BorderRadius.circular(5),
                                                           )
                                                         : null,
@@ -455,12 +485,7 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                     Padding(
                                                       padding: const EdgeInsets.only(top: 2.0),
                                                       child: Container(
-                                                        width:
-                                                            widget.calendarDotSize ??
-                                                            dispSize.height * .006,
-                                                        height:
-                                                            widget.calendarDotSize ??
-                                                            dispSize.height * .006,
+                                                        height: dispSize.height * .006,
                                                         decoration: BoxDecoration(
                                                           color: dotEvent.color,
                                                           shape: BoxShape.circle,
@@ -471,14 +496,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                     Padding(
                                                       padding: const EdgeInsets.only(top: 2.0),
                                                       child: Container(
-                                                        width:
-                                                            widget.calendarDotSize ??
-                                                            dispSize.height * .006,
-                                                        height:
-                                                            widget.calendarDotSize ??
-                                                            dispSize.height * .006,
-                                                        decoration: const BoxDecoration(
-                                                          color: Colors.red,
+                                                        height: dispSize.height * .006,
+                                                        decoration: BoxDecoration(
+                                                          color: widget.primaryColor,
                                                           shape: BoxShape.circle,
                                                         ),
                                                       ),
@@ -489,12 +509,7 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                     Padding(
                                                       padding: const EdgeInsets.only(top: 2.0),
                                                       child: Container(
-                                                        width:
-                                                            widget.calendarDotSize ??
-                                                            dispSize.height * .006,
-                                                        height:
-                                                            widget.calendarDotSize ??
-                                                            dispSize.height * .006,
+                                                        height: dispSize.height * .006,
                                                         decoration: const BoxDecoration(
                                                           color: Colors.black,
                                                           shape: BoxShape.circle,
@@ -539,14 +554,14 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                               ),
                                             ),
                                             _LegendItem(
-                                              color: Colors.red,
-                                              label: 'Holiday (Sun/Sat)',
+                                              color: widget.primaryColor,
+                                              label: 'Holiday',
                                               isDot: true,
                                             ),
                                             if (widget.markAllDates)
                                               _LegendItem(
-                                                color: Colors.black,
-                                                label: 'Marked Date',
+                                                color: widget.todayColor ?? widget.primaryColor,
+                                                label: 'Today',
                                                 isDot: true,
                                               ),
                                           ];
@@ -572,36 +587,17 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                           children: [
                                                             item.isDot
                                                                 ? Container(
-                                                                    width:
-                                                                        widget.legendDotSize ??
-                                                                        dispSize.height * .012,
-                                                                    height:
-                                                                        widget.legendDotSize ??
-                                                                        dispSize.height * .012,
-                                                                    alignment: Alignment.center,
-                                                                    child: Container(
-                                                                      width:
-                                                                          (widget.legendDotSize ??
-                                                                              dispSize.height *
-                                                                                  .012) /
-                                                                          2,
-                                                                      height:
-                                                                          (widget.legendDotSize ??
-                                                                              dispSize.height *
-                                                                                  .012) /
-                                                                          2,
-                                                                      decoration: BoxDecoration(
-                                                                        color: item.color,
-                                                                        shape: BoxShape.circle,
-                                                                      ),
+                                                                    height: dispSize.height * .006,
+                                                                    width: dispSize.height * .006,
+                                                                    decoration: BoxDecoration(
+                                                                      color: item.color,
+                                                                      shape: BoxShape.circle,
                                                                     ),
                                                                   )
                                                                 : CircleAvatar(
                                                                     radius:
-                                                                        (widget.legendDotSize ??
-                                                                            dispSize.height *
-                                                                                .012) /
-                                                                        2,
+                                                                        dispSize.height *
+                                                                        .003, // fixed size
                                                                     backgroundColor: item.color,
                                                                   ),
                                                             SizedBox(width: 6),
