@@ -15,7 +15,15 @@ const List<String> _monthNames = [
   'November',
   'December',
 ];
-const List<String> _weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const List<String> _weekdayNames = [
+  'Sun',
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat',
+];
 
 class EventCalendarTheme2 extends StatefulWidget {
   final double? width;
@@ -152,11 +160,19 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
   }
 
   void _goToPreviousMonth() {
-    _focusedDay.value = DateTime(_focusedDay.value.year, _focusedDay.value.month - 1, 1);
+    _focusedDay.value = DateTime(
+      _focusedDay.value.year,
+      _focusedDay.value.month - 1,
+      1,
+    );
   }
 
   void _goToNextMonth() {
-    _focusedDay.value = DateTime(_focusedDay.value.year, _focusedDay.value.month + 1, 1);
+    _focusedDay.value = DateTime(
+      _focusedDay.value.year,
+      _focusedDay.value.month + 1,
+      1,
+    );
   }
 
   void _showYearChooser() {
@@ -187,14 +203,18 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
       (i) => (widget.startYear ?? DateTime.now().year) + i,
     );
     final Size dispSize = MediaQuery.of(context).size;
-    final Color defaultCurrentMonthColor = widget.currentMonthDateColor ?? Colors.black;
-    final Color defaultPastFutureMonthColor = widget.pastFutureMonthDateColor ?? Colors.grey;
+    final Color defaultCurrentMonthColor =
+        widget.currentMonthDateColor ?? Colors.black;
+    final Color defaultPastFutureMonthColor =
+        widget.pastFutureMonthDateColor ?? Colors.grey;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           width: widget.width,
-          color: widget.backgroundColor ?? widget.primaryColor.withValues(alpha: .05),
+          color:
+              widget.backgroundColor ??
+              widget.primaryColor.withValues(alpha: .05),
           margin: widget.margin,
           padding: widget.padding ?? EdgeInsets.all(10),
           constraints: BoxConstraints(maxHeight: 500),
@@ -213,8 +233,12 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
-                              vertical: widget.width != null ? (widget.width! * .02) : 10,
-                              horizontal: widget.width != null ? (widget.width! * .02) : 10,
+                              vertical: widget.width != null
+                                  ? (widget.width! * .02)
+                                  : 10,
+                              horizontal: widget.width != null
+                                  ? (widget.width! * .02)
+                                  : 10,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +251,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                       color: Colors.white,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey.withValues(alpha: .4),
+                                          color: Colors.grey.withValues(
+                                            alpha: .4,
+                                          ),
                                           blurRadius: 5,
                                         ),
                                       ],
@@ -239,7 +265,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: widget.width ?? dispSize.width * .04),
+                                SizedBox(
+                                  width: widget.width ?? dispSize.width * .04,
+                                ),
                                 Row(
                                   children: [
                                     GestureDetector(
@@ -263,7 +291,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(width: widget.width ?? dispSize.width * .04),
+                                SizedBox(
+                                  width: widget.width ?? dispSize.width * .04,
+                                ),
                                 GestureDetector(
                                   onTap: _goToNextMonth,
                                   child: Container(
@@ -272,7 +302,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                       color: Colors.white,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.grey.withValues(alpha: .4),
+                                          color: Colors.grey.withValues(
+                                            alpha: .4,
+                                          ),
                                           blurRadius: 5,
                                         ),
                                       ],
@@ -292,43 +324,58 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                             Expanded(
                               child: SingleChildScrollView(
                                 child: Column(
-                                  children: List.generate(((years.length) / 4).ceil(), (rowIndex) {
-                                    return Row(
-                                      children: List.generate(4, (colIndex) {
-                                        int yearIndex = rowIndex * 4 + colIndex;
-                                        if (yearIndex >= years.length) {
-                                          return Expanded(child: SizedBox());
-                                        }
-                                        final year = years[yearIndex];
-                                        final isSelected = year == focusedDay.year;
-                                        return Expanded(
-                                          child: GestureDetector(
-                                            onTap: () => _selectYear(year),
-                                            child: Container(
-                                              margin: EdgeInsets.all(8),
-                                              padding: EdgeInsets.symmetric(vertical: 10),
-                                              decoration: BoxDecoration(
-                                                color: isSelected
-                                                    ? widget.primaryColor
-                                                    : Colors.transparent,
-                                                border: Border.all(color: widget.primaryColor),
-                                                borderRadius: BorderRadius.circular(10),
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: CalnderWidgets.calnderText(
-                                                '$year',
-                                                textColor: isSelected
-                                                    ? Colors.white
-                                                    : widget.primaryColor,
-                                                textStype: isSelected ? Font.bold : Font.regular,
-                                                textSize: dispSize.height * .016,
+                                  children: List.generate(
+                                    ((years.length) / 4).ceil(),
+                                    (rowIndex) {
+                                      return Row(
+                                        children: List.generate(4, (colIndex) {
+                                          int yearIndex =
+                                              rowIndex * 4 + colIndex;
+                                          if (yearIndex >= years.length) {
+                                            return Expanded(child: SizedBox());
+                                          }
+                                          final year = years[yearIndex];
+                                          final isSelected =
+                                              year == focusedDay.year;
+                                          return Expanded(
+                                            child: GestureDetector(
+                                              onTap: () => _selectYear(year),
+                                              child: Container(
+                                                margin: EdgeInsets.all(8),
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical: 10,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: isSelected
+                                                      ? widget.primaryColor
+                                                      : Colors.transparent,
+                                                  border: Border.all(
+                                                    color: widget.primaryColor,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child:
+                                                    CalnderWidgets.calnderText(
+                                                      '$year',
+                                                      textColor: isSelected
+                                                          ? Colors.white
+                                                          : widget.primaryColor,
+                                                      textStype: isSelected
+                                                          ? Font.bold
+                                                          : Font.regular,
+                                                      textSize:
+                                                          dispSize.height *
+                                                          .016,
+                                                    ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }),
-                                    );
-                                  }),
+                                          );
+                                        }),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             )
@@ -339,22 +386,32 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                   children: List.generate(4, (rowIndex) {
                                     return Row(
                                       children: List.generate(3, (colIndex) {
-                                        int monthIndex = rowIndex * 3 + colIndex + 1;
-                                        if (monthIndex > 12) return Expanded(child: SizedBox());
-                                        final isSelected = monthIndex == focusedDay.month;
-                                        final monthName = _monthNames[monthIndex - 1];
+                                        int monthIndex =
+                                            rowIndex * 3 + colIndex + 1;
+                                        if (monthIndex > 12)
+                                          return Expanded(child: SizedBox());
+                                        final isSelected =
+                                            monthIndex == focusedDay.month;
+                                        final monthName =
+                                            _monthNames[monthIndex - 1];
                                         return Expanded(
                                           child: GestureDetector(
-                                            onTap: () => _selectMonth(monthIndex),
+                                            onTap: () =>
+                                                _selectMonth(monthIndex),
                                             child: Container(
                                               margin: EdgeInsets.all(8),
-                                              padding: EdgeInsets.symmetric(vertical: 10),
+                                              padding: EdgeInsets.symmetric(
+                                                vertical: 10,
+                                              ),
                                               decoration: BoxDecoration(
                                                 color: isSelected
                                                     ? widget.primaryColor
                                                     : Colors.transparent,
-                                                border: Border.all(color: widget.primaryColor),
-                                                borderRadius: BorderRadius.circular(10),
+                                                border: Border.all(
+                                                  color: widget.primaryColor,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                               ),
                                               alignment: Alignment.center,
                                               child: CalnderWidgets.calnderText(
@@ -362,8 +419,11 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                 textColor: isSelected
                                                     ? Colors.white
                                                     : widget.primaryColor,
-                                                textStype: isSelected ? Font.bold : Font.regular,
-                                                textSize: dispSize.height * .016,
+                                                textStype: isSelected
+                                                    ? Font.bold
+                                                    : Font.regular,
+                                                textSize:
+                                                    dispSize.height * .016,
                                               ),
                                             ),
                                           ),
@@ -397,7 +457,9 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                               valueListenable: _selectedDate,
                               builder: (context, selectedDate, _) {
                                 return Column(
-                                  children: List.generate((days.length / 7).ceil(), (rowIndex) {
+                                  children: List.generate((days.length / 7).ceil(), (
+                                    rowIndex,
+                                  ) {
                                     return Row(
                                       children: List.generate(7, (colIndex) {
                                         int dayIndex = rowIndex * 7 + colIndex;
@@ -405,9 +467,12 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                           return Expanded(child: SizedBox());
                                         }
                                         final day = days[dayIndex];
-                                        final isCurrentMonth = day.month == focusedDay.month;
+                                        final isCurrentMonth =
+                                            day.month == focusedDay.month;
                                         // final event = getEvent(day);
-                                        final coloredEvent = getColoredEvent(day);
+                                        final coloredEvent = getColoredEvent(
+                                          day,
+                                        );
                                         final dotEvent = getEvent(day);
                                         final isWeekend =
                                             day.weekday == DateTime.sunday ||
@@ -425,10 +490,13 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                         return Expanded(
                                           child: GestureDetector(
                                             onTap: () {
-                                              if (widget.onDateTap != null && isCurrentMonth) {
+                                              if (widget.onDateTap != null &&
+                                                  isCurrentMonth) {
                                                 widget.onDateTap!(day);
                                               }
-                                              if (widget.isSelectedShow == true && isCurrentMonth) {
+                                              if (widget.isSelectedShow ==
+                                                      true &&
+                                                  isCurrentMonth) {
                                                 _selectedDate.value = day;
                                               }
                                             },
@@ -441,7 +509,8 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                 top: dispSize.height * .005,
                                               ),
                                               child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Container(
@@ -451,69 +520,109 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                                     decoration: isSelected
                                                         ? BoxDecoration(
                                                             color:
-                                                                widget.isSelectedColor ??
+                                                                widget
+                                                                    .isSelectedColor ??
                                                                 Colors.grey,
-                                                            borderRadius: BorderRadius.circular(5),
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  5,
+                                                                ),
                                                           )
                                                         : isToday
                                                         ? BoxDecoration(
                                                             color:
-                                                                widget.todayColor ??
-                                                                widget.primaryColor,
-                                                            borderRadius: BorderRadius.circular(5),
+                                                                widget
+                                                                    .todayColor ??
+                                                                widget
+                                                                    .primaryColor,
+                                                            borderRadius:
+                                                                BorderRadius.circular(
+                                                                  5,
+                                                                ),
                                                           )
                                                         : null,
                                                     child: Center(
                                                       child: CalnderWidgets.calnderText(
                                                         '${day.day}',
-                                                        textColor: isSelected || isToday
+                                                        textColor:
+                                                            isSelected ||
+                                                                isToday
                                                             ? Colors.white
-                                                            : (coloredEvent != null
-                                                                  ? coloredEvent.color
+                                                            : (coloredEvent !=
+                                                                      null
+                                                                  ? coloredEvent
+                                                                        .color
                                                                   : (isCurrentMonth
                                                                         ? defaultCurrentMonthColor
                                                                         : defaultPastFutureMonthColor)),
                                                         textSize:
                                                             widget.fontsize ??
-                                                            dispSize.height * .014,
+                                                            dispSize.height *
+                                                                .014,
                                                         textStype: Font.regular,
-                                                        directStyle: widget.calendarTextStyle,
+                                                        directStyle: widget
+                                                            .calendarTextStyle,
                                                       ),
                                                     ),
                                                   ),
                                                   if (dotEvent != null)
                                                     Padding(
-                                                      padding: const EdgeInsets.only(top: 2.0),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                            top: 2.0,
+                                                          ),
                                                       child: Container(
-                                                        height: dispSize.height * .006,
-                                                        decoration: BoxDecoration(
-                                                          color: dotEvent.color,
-                                                          shape: BoxShape.circle,
-                                                        ),
+                                                        height:
+                                                            dispSize.height *
+                                                            .006,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                              color: dotEvent
+                                                                  .color,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
                                                       ),
                                                     )
                                                   else if (isWeekend)
                                                     Padding(
-                                                      padding: const EdgeInsets.only(top: 2.0),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                            top: 2.0,
+                                                          ),
                                                       child: Container(
-                                                        height: dispSize.height * .006,
-                                                        decoration: BoxDecoration(
-                                                          color: widget.primaryColor,
-                                                          shape: BoxShape.circle,
-                                                        ),
+                                                        height:
+                                                            dispSize.height *
+                                                            .006,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                              color: widget
+                                                                  .primaryColor,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
                                                       ),
                                                     )
-                                                  else if (widget.markAllDates &&
+                                                  else if (widget
+                                                          .markAllDates &&
                                                       dotEvent == null &&
                                                       !isWeekend)
                                                     Padding(
-                                                      padding: const EdgeInsets.only(top: 2.0),
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                            top: 2.0,
+                                                          ),
                                                       child: Container(
-                                                        height: dispSize.height * .006,
-                                                        decoration: const BoxDecoration(
-                                                          color: Colors.black,
-                                                          shape: BoxShape.circle,
-                                                        ),
+                                                        height:
+                                                            dispSize.height *
+                                                            .006,
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                              color:
+                                                                  Colors.black,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                            ),
                                                       ),
                                                     ),
                                                 ],
@@ -538,96 +647,123 @@ class EventCalendarTheme2State extends State<EventCalendarTheme2> {
                                       Builder(
                                         builder: (context) {
                                           // Combine coloredEvents and events for legend
-                                          final List<_LegendItem> legendItems = [
-                                            ...widget.coloredEvents.map(
-                                              (e) => _LegendItem(
-                                                color: e.color,
-                                                label: e.eventName,
-                                                isDot: false,
-                                              ),
-                                            ),
-                                            ...widget.events.map(
-                                              (e) => _LegendItem(
-                                                color: e.color,
-                                                label: e.eventName,
-                                                isDot: true,
-                                              ),
-                                            ),
-                                            _LegendItem(
-                                              color: widget.primaryColor,
-                                              label: 'Holiday',
-                                              isDot: true,
-                                            ),
-                                            if (widget.markAllDates)
-                                              _LegendItem(
-                                                color: widget.todayColor ?? widget.primaryColor,
-                                                label: 'Today',
-                                                isDot: true,
-                                              ),
-                                          ];
+                                          final List<_LegendItem> legendItems =
+                                              [
+                                                ...widget.coloredEvents.map(
+                                                  (e) => _LegendItem(
+                                                    color: e.color,
+                                                    label: e.eventName,
+                                                    isDot: false,
+                                                  ),
+                                                ),
+                                                ...widget.events.map(
+                                                  (e) => _LegendItem(
+                                                    color: e.color,
+                                                    label: e.eventName,
+                                                    isDot: true,
+                                                  ),
+                                                ),
+                                                _LegendItem(
+                                                  color: widget.primaryColor,
+                                                  label: 'Holiday',
+                                                  isDot: true,
+                                                ),
+                                                if (widget.markAllDates)
+                                                  _LegendItem(
+                                                    color:
+                                                        widget.todayColor ??
+                                                        widget.primaryColor,
+                                                    label: 'Today',
+                                                    isDot: true,
+                                                  ),
+                                              ];
                                           return Column(
-                                            children: List.generate(
-                                              (legendItems.length / 4).ceil(),
-                                              (rowIndex) {
-                                                return Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    vertical: dispSize.height * .008,
-                                                  ),
-                                                  child: Row(
-                                                    children: List.generate(4, (colIndex) {
-                                                      int legendIndex = rowIndex * 4 + colIndex;
-                                                      if (legendIndex >= legendItems.length) {
-                                                        return Expanded(child: SizedBox());
-                                                      }
-                                                      final item = legendItems[legendIndex];
+                                            children: List.generate((legendItems.length / 4).ceil(), (
+                                              rowIndex,
+                                            ) {
+                                              return Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical:
+                                                      dispSize.height * .008,
+                                                ),
+                                                child: Row(
+                                                  children: List.generate(4, (
+                                                    colIndex,
+                                                  ) {
+                                                    int legendIndex =
+                                                        rowIndex * 4 + colIndex;
+                                                    if (legendIndex >=
+                                                        legendItems.length) {
                                                       return Expanded(
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment.start,
-                                                          children: [
-                                                            item.isDot
-                                                                ? Container(
-                                                                    height: dispSize.height * .006,
-                                                                    width: dispSize.height * .006,
-                                                                    decoration: BoxDecoration(
-                                                                      color: item.color,
-                                                                      shape: BoxShape.circle,
-                                                                    ),
-                                                                  )
-                                                                : CircleAvatar(
-                                                                    radius:
-                                                                        dispSize.height *
-                                                                        .003, // fixed size
-                                                                    backgroundColor: item.color,
-                                                                  ),
-                                                            SizedBox(width: 6),
-                                                            Flexible(
-                                                              child: CalnderWidgets.calnderText(
-                                                                item.label,
-                                                                textSize:
-                                                                    widget.legendTextSize ??
-                                                                    widget.fontsize ??
-                                                                    dispSize.height * .015,
-                                                                textStype:
-                                                                    widget.legendTextWeight != null
-                                                                    ? (widget.legendTextWeight ==
-                                                                              FontWeight.bold
-                                                                          ? Font.bold
-                                                                          : Font.medium)
-                                                                    : Font.medium,
-                                                                textBehaviour:
-                                                                    TextOverflow.ellipsis,
-                                                                directStyle: widget.legendTextStyle,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                        child: SizedBox(),
                                                       );
-                                                    }),
-                                                  ),
-                                                );
-                                              },
-                                            ),
+                                                    }
+                                                    final item =
+                                                        legendItems[legendIndex];
+                                                    return Expanded(
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          item.isDot
+                                                              ? Container(
+                                                                  height:
+                                                                      dispSize
+                                                                          .height *
+                                                                      .006,
+                                                                  width:
+                                                                      dispSize
+                                                                          .height *
+                                                                      .006,
+                                                                  decoration: BoxDecoration(
+                                                                    color: item
+                                                                        .color,
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                )
+                                                              : CircleAvatar(
+                                                                  radius:
+                                                                      dispSize
+                                                                          .height *
+                                                                      .003, // fixed size
+                                                                  backgroundColor:
+                                                                      item.color,
+                                                                ),
+                                                          SizedBox(width: 6),
+                                                          Flexible(
+                                                            child: CalnderWidgets.calnderText(
+                                                              item.label,
+                                                              textSize:
+                                                                  widget
+                                                                      .legendTextSize ??
+                                                                  widget
+                                                                      .fontsize ??
+                                                                  dispSize.height *
+                                                                      .015,
+                                                              textStype:
+                                                                  widget.legendTextWeight !=
+                                                                      null
+                                                                  ? (widget.legendTextWeight ==
+                                                                            FontWeight.bold
+                                                                        ? Font.bold
+                                                                        : Font.medium)
+                                                                  : Font.medium,
+                                                              textBehaviour:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              directStyle: widget
+                                                                  .legendTextStyle,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  }),
+                                                ),
+                                              );
+                                            }),
                                           );
                                         },
                                       ),

@@ -1,3 +1,7 @@
+## 1.0.0
+
+* Targeting on Pubdev score update
+
 ## 0.0.7
 
 * New Calender included updated Pubdev

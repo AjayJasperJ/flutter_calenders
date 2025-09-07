@@ -88,7 +88,13 @@ class _MyCalendersState extends State<MyCalenders> {
               coloredEvents: [
                 Event(
                   eventName: 'Absent',
-                  dates: [7, 14, 21, 28, 20].map((e) => DateTime(2025, 9, e)).toList(),
+                  dates: [
+                    7,
+                    14,
+                    21,
+                    28,
+                    20,
+                  ].map((e) => DateTime(2025, 9, e)).toList(),
                   color: Colors.red,
                 ),
               ],

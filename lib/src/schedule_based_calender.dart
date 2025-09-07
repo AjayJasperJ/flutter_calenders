@@ -112,7 +112,9 @@ class ScheduleBasedCalenderState extends State<ScheduleBasedCalender> {
   @override
   Widget build(BuildContext context) {
     final Size dispSize = MediaQuery.of(context).size;
-    final double fontSize = widget.height != null ? widget.height! * .04 : dispSize.height * .015;
+    final double fontSize = widget.height != null
+        ? widget.height! * .04
+        : dispSize.height * .015;
     final days = _daysInMonth(_focusedDay);
     return Container(
       height: widget.height,
@@ -133,11 +135,18 @@ class ScheduleBasedCalenderState extends State<ScheduleBasedCalender> {
             children: List.generate(7, (index) {
               final formatted = _weekdayNames[index];
               return Container(
-                height: widget.height != null ? widget.height! * .12 : dispSize.height * .05,
-                width: widget.width != null ? widget.width! * .12 : dispSize.height * .05,
+                height: widget.height != null
+                    ? widget.height! * .12
+                    : dispSize.height * .05,
+                width: widget.width != null
+                    ? widget.width! * .12
+                    : dispSize.height * .05,
                 margin: EdgeInsets.all(dispSize.height * .002),
                 alignment: Alignment.center,
-                decoration: BoxDecoration(shape: BoxShape.circle, color: widget.weekdayColor),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: widget.weekdayColor,
+                ),
                 child: Center(
                   child: CalnderWidgets.calnderText(
                     formatted,
@@ -176,13 +185,17 @@ class ScheduleBasedCalenderState extends State<ScheduleBasedCalender> {
                       if (!isCurrentMonth) {
                         cellColor = Colors.transparent;
                       } else if (isSelected) {
-                        cellColor = widget.isSelectedColor ?? Theme.of(context).primaryColor;
+                        cellColor =
+                            widget.isSelectedColor ??
+                            Theme.of(context).primaryColor;
                       } else if (event != null) {
                         cellColor = event.color;
                       } else {
                         cellColor =
                             widget.monthDateColor ??
-                            Theme.of(context).primaryColor.withValues(alpha: .1);
+                            Theme.of(
+                              context,
+                            ).primaryColor.withValues(alpha: .1);
                       }
                       Color? textColor;
                       if (!isCurrentMonth) {
@@ -207,10 +220,15 @@ class ScheduleBasedCalenderState extends State<ScheduleBasedCalender> {
                           height: widget.height != null
                               ? widget.height! * .12
                               : dispSize.height * .05,
-                          width: widget.width != null ? widget.width! * .12 : dispSize.height * .05,
+                          width: widget.width != null
+                              ? widget.width! * .12
+                              : dispSize.height * .05,
                           alignment: Alignment.center,
                           margin: EdgeInsets.all(dispSize.height * .002),
-                          decoration: BoxDecoration(shape: BoxShape.circle, color: cellColor),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: cellColor,
+                          ),
                           child: CalnderWidgets.calnderText(
                             isCurrentMonth ? '${day.day}' : '',
                             textColor: textColor,

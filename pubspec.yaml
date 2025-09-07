@@ -1,9 +1,9 @@
 name: flutter_calenders
 description: "Its a flutter package for calenders Predefined and custom templates"
-version: 0.0.7
+version: 1.0.0
 homepage: https://github.com/AjayJasperJ
 repository: https://github.com/AjayJasperJ/flutter_calenders
-issue_tracker: https://github.com/AjayJasperJ/flutter_calenders/issues
+# issue_tracker: https://github.com/AjayJasperJ/flutter_calenders/issues
 
 environment:
   sdk: ^3.8.0

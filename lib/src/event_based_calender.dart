@@ -16,7 +16,15 @@ const List<String> _monthNames = [
   'November',
   'December',
 ];
-const List<String> _weekdayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const List<String> _weekdayNames = [
+  'Sun',
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat',
+];
 
 class EventBasedCalender extends StatefulWidget {
   final double? width;
@@ -127,11 +135,19 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
   }
 
   void _goToPreviousMonth() {
-    _focusedDay.value = DateTime(_focusedDay.value.year, _focusedDay.value.month - 1, 1);
+    _focusedDay.value = DateTime(
+      _focusedDay.value.year,
+      _focusedDay.value.month - 1,
+      1,
+    );
   }
 
   void _goToNextMonth() {
-    _focusedDay.value = DateTime(_focusedDay.value.year, _focusedDay.value.month + 1, 1);
+    _focusedDay.value = DateTime(
+      _focusedDay.value.year,
+      _focusedDay.value.month + 1,
+      1,
+    );
   }
 
   void _showYearChooser() {
@@ -162,14 +178,18 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
       (i) => (widget.startYear ?? DateTime.now().year) + i,
     );
     final Size dispSize = MediaQuery.of(context).size;
-    final Color defaultCurrentMonthColor = widget.currentMonthDateColor ?? Colors.black;
-    final Color defaultPastFutureMonthColor = widget.pastFutureMonthDateColor ?? Colors.grey;
+    final Color defaultCurrentMonthColor =
+        widget.currentMonthDateColor ?? Colors.black;
+    final Color defaultPastFutureMonthColor =
+        widget.pastFutureMonthDateColor ?? Colors.grey;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           width: widget.width ?? double.infinity,
-          color: widget.backgroundColor ?? widget.primaryColor.withValues(alpha: 0.05),
+          color:
+              widget.backgroundColor ??
+              widget.primaryColor.withValues(alpha: 0.05),
           margin: widget.margin,
           padding: widget.padding ?? EdgeInsets.all(10),
           constraints: BoxConstraints(maxHeight: 350),
@@ -188,8 +208,12 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
-                              vertical: widget.width != null ? (widget.width! * .02) : 10,
-                              horizontal: widget.width != null ? (widget.width! * .02) : 10,
+                              vertical: widget.width != null
+                                  ? (widget.width! * .02)
+                                  : 10,
+                              horizontal: widget.width != null
+                                  ? (widget.width! * .02)
+                                  : 10,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -221,12 +245,18 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                   children: [
                                     GestureDetector(
                                       onTap: _goToPreviousMonth,
-                                      child: Icon(Icons.chevron_left, color: widget.chooserColor),
+                                      child: Icon(
+                                        Icons.chevron_left,
+                                        color: widget.chooserColor,
+                                      ),
                                     ),
                                     SizedBox(width: dispSize.width * .04),
                                     GestureDetector(
                                       onTap: _goToNextMonth,
-                                      child: Icon(Icons.chevron_right, color: widget.chooserColor),
+                                      child: Icon(
+                                        Icons.chevron_right,
+                                        color: widget.chooserColor,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -237,43 +267,58 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                             Expanded(
                               child: SingleChildScrollView(
                                 child: Column(
-                                  children: List.generate(((years.length) / 4).ceil(), (rowIndex) {
-                                    return Row(
-                                      children: List.generate(4, (colIndex) {
-                                        int yearIndex = rowIndex * 4 + colIndex;
-                                        if (yearIndex >= years.length) {
-                                          return Expanded(child: SizedBox());
-                                        }
-                                        final year = years[yearIndex];
-                                        final isSelected = year == focusedDay.year;
-                                        return Expanded(
-                                          child: GestureDetector(
-                                            onTap: () => _selectYear(year),
-                                            child: Container(
-                                              margin: EdgeInsets.all(8),
-                                              padding: EdgeInsets.symmetric(vertical: 10),
-                                              decoration: BoxDecoration(
-                                                color: isSelected
-                                                    ? widget.primaryColor
-                                                    : Colors.transparent,
-                                                border: Border.all(color: widget.primaryColor),
-                                                borderRadius: BorderRadius.circular(10),
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: CalnderWidgets.calnderText(
-                                                '$year',
-                                                textColor: isSelected
-                                                    ? Colors.white
-                                                    : widget.primaryColor,
-                                                textStype: isSelected ? Font.bold : Font.regular,
-                                                textSize: dispSize.height * .016,
+                                  children: List.generate(
+                                    ((years.length) / 4).ceil(),
+                                    (rowIndex) {
+                                      return Row(
+                                        children: List.generate(4, (colIndex) {
+                                          int yearIndex =
+                                              rowIndex * 4 + colIndex;
+                                          if (yearIndex >= years.length) {
+                                            return Expanded(child: SizedBox());
+                                          }
+                                          final year = years[yearIndex];
+                                          final isSelected =
+                                              year == focusedDay.year;
+                                          return Expanded(
+                                            child: GestureDetector(
+                                              onTap: () => _selectYear(year),
+                                              child: Container(
+                                                margin: EdgeInsets.all(8),
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical: 10,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: isSelected
+                                                      ? widget.primaryColor
+                                                      : Colors.transparent,
+                                                  border: Border.all(
+                                                    color: widget.primaryColor,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child:
+                                                    CalnderWidgets.calnderText(
+                                                      '$year',
+                                                      textColor: isSelected
+                                                          ? Colors.white
+                                                          : widget.primaryColor,
+                                                      textStype: isSelected
+                                                          ? Font.bold
+                                                          : Font.regular,
+                                                      textSize:
+                                                          dispSize.height *
+                                                          .016,
+                                                    ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }),
-                                    );
-                                  }),
+                                          );
+                                        }),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             )
@@ -284,22 +329,32 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                   children: List.generate(4, (rowIndex) {
                                     return Row(
                                       children: List.generate(3, (colIndex) {
-                                        int monthIndex = rowIndex * 3 + colIndex + 1;
-                                        if (monthIndex > 12) return Expanded(child: SizedBox());
-                                        final isSelected = monthIndex == focusedDay.month;
-                                        final monthName = _monthNames[monthIndex - 1];
+                                        int monthIndex =
+                                            rowIndex * 3 + colIndex + 1;
+                                        if (monthIndex > 12)
+                                          return Expanded(child: SizedBox());
+                                        final isSelected =
+                                            monthIndex == focusedDay.month;
+                                        final monthName =
+                                            _monthNames[monthIndex - 1];
                                         return Expanded(
                                           child: GestureDetector(
-                                            onTap: () => _selectMonth(monthIndex),
+                                            onTap: () =>
+                                                _selectMonth(monthIndex),
                                             child: Container(
                                               margin: EdgeInsets.all(8),
-                                              padding: EdgeInsets.symmetric(vertical: 10),
+                                              padding: EdgeInsets.symmetric(
+                                                vertical: 10,
+                                              ),
                                               decoration: BoxDecoration(
                                                 color: isSelected
                                                     ? widget.primaryColor
                                                     : Colors.transparent,
-                                                border: Border.all(color: widget.primaryColor),
-                                                borderRadius: BorderRadius.circular(10),
+                                                border: Border.all(
+                                                  color: widget.primaryColor,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                               ),
                                               alignment: Alignment.center,
                                               child: CalnderWidgets.calnderText(
@@ -307,8 +362,11 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                                 textColor: isSelected
                                                     ? Colors.white
                                                     : widget.primaryColor,
-                                                textStype: isSelected ? Font.bold : Font.regular,
-                                                textSize: dispSize.height * .016,
+                                                textStype: isSelected
+                                                    ? Font.bold
+                                                    : Font.regular,
+                                                textSize:
+                                                    dispSize.height * .016,
                                               ),
                                             ),
                                           ),
@@ -342,7 +400,9 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                               valueListenable: _selectedDate,
                               builder: (context, selectedDate, _) {
                                 return Column(
-                                  children: List.generate((days.length / 7).ceil(), (rowIndex) {
+                                  children: List.generate((days.length / 7).ceil(), (
+                                    rowIndex,
+                                  ) {
                                     return Row(
                                       children: List.generate(7, (colIndex) {
                                         int dayIndex = rowIndex * 7 + colIndex;
@@ -350,22 +410,27 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                           return Expanded(child: SizedBox());
                                         }
                                         final day = days[dayIndex];
-                                        final isCurrentMonth = day.month == focusedDay.month;
+                                        final isCurrentMonth =
+                                            day.month == focusedDay.month;
                                         final event = getEvent(day);
                                         final prevEvent = colIndex > 0
                                             ? getEvent(days[dayIndex - 1])
                                             : null;
-                                        final nextEvent = colIndex < 6 && dayIndex + 1 < days.length
+                                        final nextEvent =
+                                            colIndex < 6 &&
+                                                dayIndex + 1 < days.length
                                             ? getEvent(days[dayIndex + 1])
                                             : null;
                                         bool isStreakLeft =
                                             event != null &&
                                             prevEvent != null &&
-                                            prevEvent.eventName == event.eventName;
+                                            prevEvent.eventName ==
+                                                event.eventName;
                                         bool isStreakRight =
                                             event != null &&
                                             nextEvent != null &&
-                                            nextEvent.eventName == event.eventName;
+                                            nextEvent.eventName ==
+                                                event.eventName;
                                         BorderRadius borderRadius;
                                         EdgeInsets paddings = EdgeInsets.zero;
                                         if (isStreakLeft && isStreakRight) {
@@ -391,7 +456,9 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                             bottom: dispSize.height * .005,
                                           );
                                         } else {
-                                          borderRadius = BorderRadius.circular(999);
+                                          borderRadius = BorderRadius.circular(
+                                            999,
+                                          );
                                           paddings = EdgeInsets.symmetric(
                                             horizontal: dispSize.width * .01,
                                             vertical: dispSize.height * .005,
@@ -406,10 +473,13 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                         return Expanded(
                                           child: GestureDetector(
                                             onTap: () {
-                                              if (widget.onDateTap != null && isCurrentMonth) {
+                                              if (widget.onDateTap != null &&
+                                                  isCurrentMonth) {
                                                 widget.onDateTap!(day);
                                               }
-                                              if (widget.isSelectedShow == true && isCurrentMonth) {
+                                              if (widget.isSelectedShow ==
+                                                      true &&
+                                                  isCurrentMonth) {
                                                 _selectedDate.value = day;
                                               }
                                             },
@@ -419,25 +489,33 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                                               margin: paddings,
                                               decoration: isSelected
                                                   ? BoxDecoration(
-                                                      color: widget.isSelectedColor ?? Colors.grey,
-                                                      borderRadius: borderRadius,
+                                                      color:
+                                                          widget
+                                                              .isSelectedColor ??
+                                                          Colors.grey,
+                                                      borderRadius:
+                                                          borderRadius,
                                                     )
                                                   : event != null
                                                   ? BoxDecoration(
                                                       color: event.color,
-                                                      borderRadius: borderRadius,
+                                                      borderRadius:
+                                                          borderRadius,
                                                     )
                                                   : null,
                                               child: Center(
                                                 child: CalnderWidgets.calnderText(
                                                   '${day.day}',
-                                                  textColor: (isSelected || event != null)
+                                                  textColor:
+                                                      (isSelected ||
+                                                          event != null)
                                                       ? Colors.white
                                                       : (isCurrentMonth
                                                             ? defaultCurrentMonthColor
                                                             : defaultPastFutureMonthColor),
                                                   textSize:
-                                                      widget.fontsize ?? dispSize.height * .014,
+                                                      widget.fontsize ??
+                                                      dispSize.height * .014,
                                                   textStype: Font.regular,
                                                 ),
                                               ),
@@ -468,38 +546,48 @@ class EventBasedCalenderState extends State<EventBasedCalender> {
                   children: [
                     SizedBox(height: dispSize.height * .01),
                     Column(
-                      children: List.generate((widget.events.length / 2).ceil(), (rowIndex) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: dispSize.height * .008),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: List.generate(2, (colIndex) {
-                              int eventIndex = rowIndex * 2 + colIndex;
-                              if (eventIndex >= widget.events.length) {
-                                return Expanded(child: SizedBox());
-                              }
-                              final event = widget.events[eventIndex];
-                              return Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    CircleAvatar(radius: 7, backgroundColor: event.color),
-                                    SizedBox(width: 6),
-                                    Flexible(
-                                      child: CalnderWidgets.calnderText(
-                                        event.eventName,
-                                        textSize: widget.fontsize ?? dispSize.height * .015,
-                                        textStype: Font.medium,
-                                        textBehaviour: TextOverflow.ellipsis,
+                      children: List.generate(
+                        (widget.events.length / 2).ceil(),
+                        (rowIndex) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: dispSize.height * .008,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: List.generate(2, (colIndex) {
+                                int eventIndex = rowIndex * 2 + colIndex;
+                                if (eventIndex >= widget.events.length) {
+                                  return Expanded(child: SizedBox());
+                                }
+                                final event = widget.events[eventIndex];
+                                return Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 7,
+                                        backgroundColor: event.color,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
-                        );
-                      }),
+                                      SizedBox(width: 6),
+                                      Flexible(
+                                        child: CalnderWidgets.calnderText(
+                                          event.eventName,
+                                          textSize:
+                                              widget.fontsize ??
+                                              dispSize.height * .015,
+                                          textStype: Font.medium,
+                                          textBehaviour: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
